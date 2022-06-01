@@ -22,14 +22,26 @@ body {
     height: 80%;
     justify-content: space-between;
     align-items: flex-end;
+    min-height: 300px;
+}
+
+.main-container table {
+    width: inherit;
+    flex-grow: 1;
 }
 
 .nav-link {
     display: flex;
     flex-flow: column;
     align-items: center;
-    background-color: #489db0b7;
+    background-color: #84edb14e;
+    color: #FFFFFF;
+    text-decoration: none;
     height: 250px;
     border-radius: 20px;
-    width: 300px;
+    width: 350px;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
 }
