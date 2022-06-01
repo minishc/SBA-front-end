@@ -1,0 +1,35 @@
+@font-face {
+    font-family: monsterHunterFont;
+    src: url("../NotoSansJP-Medium.otf");
+}
+
+body {
+    height: 100vh;
+    background-color: #69553e;
+    margin: 0;
+}
+
+.nav-bar {
+    height: 50px;
+    margin-bottom: 2vh;
+    background-color: #544432;
+}
+
+.main-container {
+    margin-left: 20%;
+    display: flex;
+    width: 60%;
+    height: 80%;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.nav-link {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: #489db0b7;
+    height: 250px;
+    border-radius: 20px;
+    width: 300px;
+}
