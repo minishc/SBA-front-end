@@ -12,12 +12,19 @@
 </head>
 
 <body>
+    <!--Navigation bar to stay consistent among the pages-->
     <header class="nav-bar">
         
     </header>
+    <!--Making a container for the main content on the page-->
     <div style="height: 80%; text-align: center; margin-top: 50px;">
-        <h1 style="align-self: flex-start;">Monster Hunter Search site</h1>
-        <p>This is a website that uses the API for Monster Hunter World which is found at </p>
+        <h1 style="align-self: flex-start;">Monster Hunter Search</h1>
+        <p>This is a website that uses the API for Monster Hunter World which is found <a href="https://docs.mhw-db.com" 
+                alt="mhw-db.com" style="color: #FFFFFF">here</a>. <br>
+            You can search through the equipment and the monsters that are in Monster Hunter World, <br> start by
+            clicking one of the buttons below.
+        </p>
+        <!--Flex container for the links to the other pages, uses a table to organize the elements-->
         <div class="main-container">
             <table>
                 <tr>
@@ -30,7 +37,7 @@
                     </td>
 
                     <td>
-                        <a id="equipment-search" class="nav-link" href="">
+                        <a id="equipment-search" class="nav-link" href="./views/equipment-search.html">
                             <img src=https://static.wikia.nocookie.net/monsterhunter/images/c/c2/Great_Sword_Icon_White.png alt="Great Sword Icon"
                                 style="width: 100px; height: 100px; margin-top: 50px;">
                             <h2>Search for Equipment</h2>

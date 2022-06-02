@@ -1,5 +1,5 @@
 window.onload = init;
-
+//grabbing the DOM elements to add event listeners to
 const domElements = {
     collectDOM: function() {
         this.monsterSearch = document.getElementById("monster-search");

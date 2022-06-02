@@ -1,6 +1,6 @@
 @font-face {
     font-family: monsterHunterFont;
-    src: url("../NotoSansJP-Medium.otf");
+    src: url("https://fonts.google.com/noto/specimen/Noto+Sans+JP");
 }
 
 body {
@@ -13,13 +13,22 @@ body {
     height: 50px;
     margin-bottom: 2vh;
     background-color: #544432;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin-right: 16px;
 }
 
 .main-container {
     margin-left: 20%;
     display: flex;
     width: 60%;
-    height: 80%;
+    height: 60%;
     justify-content: space-between;
     align-items: flex-end;
     min-height: 300px;
