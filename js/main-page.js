@@ -16,9 +16,9 @@ function init() {
 }
 
 function changeColor() {
-    this.style.backgroundColor = "#84edb16e";
+    this.style.backgroundColor = "#bcc3bf2e";
 }
 
 function originalColor() {
-    this.style.backgroundColor = "#84edb14e";
+    this.style.backgroundColor = "#bcc3bf4e";
 }

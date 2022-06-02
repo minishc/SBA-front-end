@@ -4,10 +4,24 @@
     <title>Equipment Search</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/equipment-search.css">
+    <script type="text/javascript" src="../js/equipment-search.js"></script>
 </head>
 <body>
     <div class="nav-bar">
         <a href="../index.html">Home</a>
     </div>
+    <div id="form-container">
+        <form>
+            <select name="weapon-or-armor" id="select-equipment">
+                <option value="weaponName">Weapon by name</option>
+                <option value="armorName">Armor by name</option>
+                <option value="weaponType">Weapon by type</option>
+                <option value="armorSlot">Armor by slot</option>
+            </select>
+            <input type="text" placeholder="Enter search terms here" id="search-terms">
+            <button type="submit" id="submit">Search</button>
+        </form>
+    </div>
+    <div id="search-results"></div>
 </body>
 </html>

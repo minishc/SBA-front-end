@@ -1,0 +1,47 @@
+#form-container {
+    display: flex;
+    width: 60%;
+    margin-left: 20%;
+    justify-content: center;
+    height: 60px;
+}
+
+#form-container form {
+    display: inherit;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#form-container button {
+    height: 25px;
+    width: 125px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    margin-left: 25px;
+    background-color: #FFFFFF;
+}
+
+#form-container select {
+    height: 25px;
+    width: 125px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    margin-right: 25px;
+    background-color: #FFFFFF;
+}
+
+#form-container input {
+    height: 25px;
+    width: 400px;
+    border: none;
+    border-radius: 5px;
+    padding: 0;
+    padding-right: 1px;
+    padding-left: 4px;
+}
+
+#search-results {
+    height: 100%;;
+}
