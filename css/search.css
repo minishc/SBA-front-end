@@ -1,4 +1,4 @@
-#form-container {
+.form-container {
     display: flex;
     width: 60%;
     margin-left: 20%;
@@ -6,13 +6,14 @@
     height: 60px;
 }
 
-#form-container form {
+.form-container form {
     display: inherit;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-#form-container button {
+.form-container button {
     height: 25px;
     width: 125px;
     padding: 0;
@@ -22,7 +23,7 @@
     background-color: #FFFFFF;
 }
 
-#form-container select {
+.form-container select {
     height: 25px;
     width: 125px;
     padding: 0;
@@ -32,7 +33,7 @@
     background-color: #FFFFFF;
 }
 
-#form-container input {
+.form-container input {
     height: 25px;
     width: 400px;
     border: none;
@@ -42,6 +43,6 @@
     padding-left: 4px;
 }
 
-#search-results {
+#equipment-search-results {
     height: 100%;;
 }

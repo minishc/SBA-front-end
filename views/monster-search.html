@@ -3,11 +3,21 @@
 <head>
     <title>Monster Search</title>
     <link rel="stylesheet" href="../css/style.css">
-
+    <link rel="stylesheet" href="../css/search.css">
 </head>
 <body>
     <div class="nav-bar">
-
+        <a href="../index.html">Home</a>
+    </div>
+    <div class="form-container">
+        <form onsubmit="return false" id="monster-search">
+            <select id="search-strategy">
+                <option value="monsterName">Monster name</option>
+                <option value="monsterSpecies">Monster species</option>
+            </select>
+            <input type="text" id="searchTerms">
+            <button id="submit-mosnter-search" type="submit">Search</button><br>
+        </form>
     </div>
 </body>
 </html>
