@@ -9,13 +9,27 @@ const searchDomElements = {
         this.searchTerms = document.getElementById("search-terms");
         this.submit = document.getElementById("submit");
         this.results = document.getElementById("search-results");
+        this.weaponFilter = document.getElementById("weapon-type");
+        this.armorFilter = document.getElementById("armor-slot-filter");
     }
 };
 
 function init() {
     searchDomElements.collectDOM();
     searchDomElements.submit.addEventListener("click", executeSearch);
-    searchDomElements.select
+    searchDomElements.select.addEventListener("change", enableRelevantSelect);
+    enableRelevantSelect();
+}
+
+function enableRelevantSelect() {
+    if(searchDomElements.select.value.substring(0, 6) == "weapon") {
+        searchDomElements.weaponFilter.disabled = false;
+        searchDomElements.armorFilter.disabled = true;
+    }
+    else {
+        searchDomElements.weaponFilter.disabled = true;
+        searchDomElements.armorFilter.disabled = false;
+    }
 }
 
 async function executeSearch() {

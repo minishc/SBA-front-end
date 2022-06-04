@@ -4,7 +4,7 @@
     <title>Equipment Search</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/search.css">
-    <script type="text/javascript" href="../js/equipment-search.js"></script>
+    <script defer src="../js/equipment-search.js"></script>
 </head>
 <body>
     <div class="nav-bar">
@@ -15,18 +15,38 @@
             <select name="weapon-or-armor" id="select-equipment">
                 <option value="weaponName">Weapon by name</option>
                 <option value="armorName">Armor by name</option>
-                <option value="weaponType">Weapon by type</option>
-                <option value="armorSlot">Armor by slot</option>
             </select>
             <span>
                 <input type="text" placeholder="Enter search terms here" id="search-terms">
                 <button type="submit" id="submit">Search</button>
             </span>
             <div style="flex-basis: 100%; height: 0px;"></div>
-            <select disabled id="weaponType">
-                <option value="swordAndShield">Sword and Shield</option>
-                <option value="longsword">Longsword</option>
-                
+            <label for="weapon-type">Filter by weapon type</label>
+            <select id="weapon-type">
+                <option value="" selected>Weapon type</option>
+                <option value="sword-and-shield">Sword and Shield</option>
+                <option value="long-sword">Longsword</option>
+                <option value="great-sword">Greatsword</option>
+                <option value="dual-blades">Dual Blades</option>
+                <option value="insect-glaive">Insect Glaive</option>
+                <option value="lance">Lance</option>
+                <option value="gunlance">Gunlance</option>
+                <option value="hammer">Hammer</option>
+                <option value="hunting-horn">Hunting Horn</option>
+                <option value="switch-axe">Switch Axe</option>
+                <option value="charge-blade">Charge Blade</option>
+                <option value="bow">Bow</option>
+                <option value="light-bowgun">Light Bowgun</option>
+                <option value="heavy-bowgun">Heavy Bowgun</option>
+            </select>
+            <label for="armor-slot-filter">Filter by armor slot</label>
+            <select id="armor-slot-filter">
+                <option value="" selected>Armor slot</option>
+                <option value="head">Head</option>
+                <option value="chest">Chest</option>
+                <option value="gloves">Gloves</option>
+                <option value="waist">Waist</option>
+                <option value="legs">Legs</option>
             </select>
         </form>
     </div>
