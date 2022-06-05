@@ -2,13 +2,14 @@
 window.onload = init;
 
 const URL = "https://mhw-db.com";
+const fextra = "https://monsterhunterworld.wiki.fextralife.com/";
 
 const searchDomElements = {
     collectDOM: function() {
         this.select = document.getElementById("select-equipment");
         this.searchTerms = document.getElementById("search-terms");
         this.submit = document.getElementById("submit");
-        this.results = document.getElementById("search-results");
+        this.results = document.getElementById("equipment-search-results");
         this.weaponFilter = document.getElementById("weapon-type");
         this.armorFilter = document.getElementById("armor-slot-filter");
         this.armorGender = document.getElementById("armor-gender");
@@ -26,23 +27,37 @@ function enableRelevantSelect() {
     if(searchDomElements.select.value.substring(0, 6) == "weapon") {
         searchDomElements.weaponFilter.disabled = false;
         searchDomElements.armorFilter.disabled = true;
+        searchDomElements.armorGender.disabled = true;
     }
     else {
         searchDomElements.weaponFilter.disabled = true;
         searchDomElements.armorFilter.disabled = false;
+        searchDomElements.armorGender.disabled = false;
     }
 }
 //function for creating a weapon card to display the results from api call
 function createWeaponCard(weapon) {
     let weaponCard = document.createElement("div");
     weaponCard.classList.add("weapon-card");
+    let weaponIcon = "";
 
-    const weaponIcon = weapon.assets.icon;
+    if(weapon.assets != null) {
+        weaponIcon = weapon.assets.icon;
+    }
     const weaponName = weapon.name;
+    let urlAddition = "";
+    if(parseInt(weaponName.charAt(weaponName.length - 1)) != NaN) {
+        urlAddition = weaponName.substring(0, weaponName.length - 2).replace(/ /g, '+');
+    }
+    else {
+        urlAddition = weaponName.replace(/ /g, '+');
+    }
 
     weaponCard.innerHTML = `
-        <img src="${weaponIcon}">
-        <h3>${weaponName}</h3>
+            <a class="info-container" href="${fextra}${urlAddition}" target="_blank">
+                <img src="${weaponIcon}" style="height: 128px; width: 128px;">
+                <h3>${weaponName}</h3>
+            </a>
         `;
     
     document.getElementById("equipment-search-results").appendChild(weaponCard);
@@ -51,12 +66,21 @@ function createWeaponCard(weapon) {
 function createArmorCard(armor) {
     let armorCard = document.createElement("div");
     armorCard.classList.add("armor-card");
+    let armorIcon = "";
 
-    const armorIcon = armor.assets.imageFemale;
+    if(armor.assets != null) {
+        if(searchDomElements.armorGender.value == "male") {
+            armorIcon = armor.assets.imageMale;
+        }
+        else {
+            armorIcon = armor.assets.imageFemale;
+        }
+    }
     const armorName = armor.name;
+    let urlAddition = armorName.replace(/ /g, '+');
 
     armorCard.innerHTML = `
-        <a class="info-container">
+        <a class="info-container" href="${fextra}${urlAddition}" target="_blank">
             <img src="${armorIcon}" style="height: 128px; width: 128px;">
             <h3>${armorName}</h3>
         </a>
@@ -68,12 +92,13 @@ function createArmorCard(armor) {
 async function executeSearch() {
     let searchValue = searchDomElements.searchTerms.value.toLowerCase();
     let adjustedSearch = searchValue.replace(/ /g, "-");
+    searchDomElements.results.innerHTML = "";
     if(searchDomElements.select.value == "weaponName" ||
             searchDomElements.select.value == "armorName") {
         //setting up query parameters with wildcards to get all relevant results
         adjustedSearch = `{"name":{"$like":"%${adjustedSearch}%"}}`;
         if(searchDomElements.select.value == "weaponName") {
-            adjustedSearch = `/weapon?q=${adjustedSearch}`; //making additions to URL
+            adjustedSearch = `/weapons?q=${adjustedSearch}`; //making additions to URL
             const weaponNamePromise = getWeaponByName((`${URL}${adjustedSearch}`));
             weaponNamePromise.then((weapons) => {
                 for(let i = 0; i < weapons.length; i++) {
@@ -97,6 +122,7 @@ async function executeSearch() {
 
 async function getArmorByName(search) {
     try {
+        console.log(search);
         const res = await fetchWithTimeout(search, {timeout: 5000})
                 .catch(e => {
                     console.log(e);
@@ -112,10 +138,52 @@ async function getArmorByName(search) {
         let armors = [];
 
         for(let i = 0; i < resArmor.length; i++) {
-            armors.push(resArmor[i]);
+            if(searchDomElements.armorFilter != "") {
+                if(resArmor[i].type == searchDomElements.armorFilter.value.toLowerCase()) {
+                    armors.push(resArmor[i]);
+                }
+            } 
+            else {
+                armors.push(resArmor[i]);
+            }
         }
 
         return armors;
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+
+async function getWeaponByName(search) {
+    try {
+        console.log(search);
+        const res = await fetchWithTimeout(search, {timeout: 5000})
+                .catch(e => {
+                    console.log(e);
+                    return null;
+                });
+        if(res.status != 200) {
+            console.log("status from api call " + res.status);
+            return null;
+        }
+
+        const resWeapon = await res.json();
+        console.log(resWeapon);
+        let weapons = [];
+
+        for(let i = 0; i < resWeapon.length; i++) {
+            if(searchDomElements.armorFilter != "") {
+                if(resWeapon[i].type == searchDomElements.weaponFilter.value.toLowerCase()) {
+                    weapons.push(resWeapon[i]);
+                }
+            } 
+            else if(!(resWeapon[i] in weapons)) {
+                weapons.push(resWeapon[i]);
+            }
+        }
+
+        return weapons;
     }
     catch(error) {
         console.log(error);
