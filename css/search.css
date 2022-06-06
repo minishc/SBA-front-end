@@ -44,7 +44,7 @@
     padding-left: 4px;
 }
 
-#equipment-search-results {
+.search-results {
     height: 100%;
     display: flex;
     flex-flow: row wrap;
@@ -52,7 +52,7 @@
     justify-content: center;
 }
 
-#equipment-search-results h3{
+.search-results h3{
     font-size: 12pt;
     margin: 0px;
 }
@@ -77,4 +77,10 @@
     width: 200px;
     padding: 5px;
     margin: 0px;
+}
+
+.monster-picture {
+    height: 150px;
+    width: 150px;
+    margin-bottom: 8px;
 }

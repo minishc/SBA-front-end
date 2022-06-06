@@ -46,11 +46,13 @@ function createWeaponCard(weapon) {
     }
     const weaponName = weapon.name;
     let urlAddition = "";
-    if(parseInt(weaponName.charAt(weaponName.length - 1)) != NaN) {
-        urlAddition = weaponName.substring(0, weaponName.length - 2).replace(/ /g, '+');
+    let endCharacter = parseInt(weaponName.charAt(weaponName.length - 1));
+    if(isNaN(endCharacter)) {
+        urlAddition = weaponName.replace(/ /g, '+');
+        urlAddition = urlAddition.replace(/"/g, "");
     }
     else {
-        urlAddition = weaponName.replace(/ /g, '+');
+        urlAddition = weaponName.substring(0, weaponName.length - 2).replace(/ /g, '+');
     }
 
     weaponCard.innerHTML = `
@@ -123,7 +125,7 @@ async function executeSearch() {
 async function getArmorByName(search) {
     try {
         console.log(search);
-        const res = await fetchWithTimeout(search, {timeout: 5000})
+        const res = await fetchResource(search)
                 .catch(e => {
                     console.log(e);
                     return null;
@@ -138,7 +140,7 @@ async function getArmorByName(search) {
         let armors = [];
 
         for(let i = 0; i < resArmor.length; i++) {
-            if(searchDomElements.armorFilter != "") {
+            if(searchDomElements.armorFilter.value != "") {
                 if(resArmor[i].type == searchDomElements.armorFilter.value.toLowerCase()) {
                     armors.push(resArmor[i]);
                 }
@@ -158,7 +160,7 @@ async function getArmorByName(search) {
 async function getWeaponByName(search) {
     try {
         console.log(search);
-        const res = await fetchWithTimeout(search, {timeout: 5000})
+        const res = await fetchResource(search)
                 .catch(e => {
                     console.log(e);
                     return null;
@@ -173,12 +175,12 @@ async function getWeaponByName(search) {
         let weapons = [];
 
         for(let i = 0; i < resWeapon.length; i++) {
-            if(searchDomElements.armorFilter != "") {
+            if(searchDomElements.weaponFilter.value != "") {
                 if(resWeapon[i].type == searchDomElements.weaponFilter.value.toLowerCase()) {
                     weapons.push(resWeapon[i]);
                 }
             } 
-            else if(!(resWeapon[i] in weapons)) {
+            else {
                 weapons.push(resWeapon[i]);
             }
         }
@@ -190,15 +192,7 @@ async function getWeaponByName(search) {
     }
 }
 
-async function fetchWithTimeout(resource, options = {}) {
-    const { timeout = 8000 } = options;
-  
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
-    const response = await fetch(resource, {
-      ...options,
-      signal: controller.signal
-    });
-    clearTimeout(id);
+async function fetchResource(resource) {
+    const response = await fetch(resource);
     return response;
   }
