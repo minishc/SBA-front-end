@@ -21,6 +21,7 @@ function init() {
 
 function createMonsterCard(monster) {
     let monCard = document.createElement("div");
+    let monsterImage = document.createElement("img");
     let imgUrl = fextraImagePrefix;
     const monName = monster.name;
 
@@ -29,8 +30,23 @@ function createMonsterCard(monster) {
     imgUrl += monster.name.toLowerCase().replace(/ /g, '_');
     imgUrl += "_render_001.png";
 
+    monsterImage.src = imgUrl;
+    monsterImage.onerror = () => {
+        monsterImage.onerror = "";
+        monsterImage.src = monsterImage.src.replace("mhw", "mhwi");
+        console.log(monsterImage.src);
+        if(monName.toLowerCase() == 'stygian zinogre') {
+            monsterImage.src = monsterImage.src.replace("001", "2");
+        }
+        monCard.innerHTML = `
+            <img src=${monsterImage.src} target="_blank" class="monster-picture">
+            <h3>${monName}</h3>
+        `;
+        return true;
+    };  
+
     monCard.innerHTML = `
-        <img src=${imgUrl} target="_blank" class="monster-picture">
+        <img src=${monsterImage.src} target="_blank" class="monster-picture">
         <h3>${monName}</h3>
     `;
 
@@ -40,9 +56,11 @@ function createMonsterCard(monster) {
 async function monsterSearch() {
     const type = monSearchDomElements.searchType.value;
     let terms = monSearchDomElements.searchTerms.value.replace(/ /g, '-');
+    monSearchDomElements.results.innerHTML = "";
+
     if(type == "monsterName") {
         let adjustedURL = `${URL}?q={"name":{"$like":"%${terms}%"}}`
-        const monsterPromise = getMonsterByName(adjustedURL);
+        const monsterPromise = getMonster(adjustedURL);
         monsterPromise.then((monsters) => {
             for(let i = 0; i < monsters.length; i++) {
                 //for each monster print it's information to the console
@@ -53,8 +71,8 @@ async function monsterSearch() {
         });
     }
     else if(type == "monsterSpecies") {
-        let adjustedURL = `${URL}?q={"name":{"$like":"%${terms}%"}}`;
-        const monsterPromise = getMonsterBySpecies(adjustedURL);
+        let adjustedURL = `${URL}?q={"species":{"$like":"%${terms}%"}}`;
+        const monsterPromise = getMonster(adjustedURL);
         monsterPromise.then((monsters) => {
             for(let i = 0; i < monsters.length; i++) {
                 //for each monster print it's information to the console
@@ -66,35 +84,7 @@ async function monsterSearch() {
     }
 }
 
-async function getMonsterByName(apiURL) {
-    try {
-        const monNamePromise = await fetchResource(apiURL)
-            .catch((e) => {
-                console.log(e.status);
-                return null;
-            });
-
-        if(monNamePromise.status != 200) {
-            console.log("response from the api: " + monNamePromise.status);
-            return null;
-        }
-
-        const resMon = await monNamePromise.json();
-        console.log(resMon);
-        let monsters = [];
-
-        for(let i = 0; i < resMon.length; i++) {
-            monsters.push(resMon[i]);
-        }
-
-        return monsters;
-    }
-    catch(error) {
-        console.log(error);
-    }
-}
-
-async function getMonsterBySpecies(apiURL) {
+async function getMonster(apiURL) {
     try {
         const monNamePromise = await fetchResource(apiURL)
             .catch((e) => {
