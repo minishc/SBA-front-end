@@ -70,6 +70,7 @@ function initializeGame() {
 
 function checkGuess() {
     const userGuess = guessDomElements.guess.value.toLowerCase();
+    guessDomElements.guess.value = "";
     if(userGuess == iAmA.name.toLowerCase()) {
         guessDomElements.hints.innerHTML = `
             <h1>Well done, you were right!</h1>
@@ -80,19 +81,15 @@ function checkGuess() {
         });
     }
     else if(guessCounter == 0) {
-        guessDomElements.hints.innerHTML = `
-            <h1>Guess what monster I am!</h1>
-            <p>I am a ${iAmA.type} monster and can be found in ${locationsString}</p>
-            <p>My species is ${iAmA.species}</p>
-        `;
+        let newHint = document.createElement("p");
+        newHint.innerHTML = `My species is ${iAmA.species}`;
+        guessDomElements.hints.appendChild(newHint);
         guessCounter++;
     }
-    else {
-        guessDomElements.hints.innerHTML = `
-            <h1>Guess what monster I am!</h1>
-            <p>I am a ${iAmA.type} monster and can be found in ${locationsString}</p>
-            <p>My species is ${iAmA.species}</p>
-            <p>I am weak to ${iAmA.weaknesses[0].name}</p>
-        `;
+    else if(guessCounter == 1) {
+        let newHint = document.createElement("p");
+        newHint.innerHTML = `I am weak to ${iAmA.weaknesses[0].element}`;
+        guessDomElements.hints.appendChild(newHint);
+        guessCounter++;
     }
 }

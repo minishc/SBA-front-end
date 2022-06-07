@@ -4,6 +4,7 @@
 }
 
 body {
+    width: 100vw;
     height: 100vh;
     background-color: #2c2b2a;
     margin: 0;
@@ -32,7 +33,7 @@ a {
     height: 60%;
     justify-content: space-between;
     align-items: flex-end;
-    min-height: 600px;
+    min-height: 650px;
 }
 
 .main-container table {
