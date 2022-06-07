@@ -92,4 +92,13 @@ function checkGuess() {
         guessDomElements.hints.appendChild(newHint);
         guessCounter++;
     }
+    else {
+        guessDomElements.hints.innerHTML = `
+            <h1>Too bad I was a ${iAmA.name}</h1>
+            <button id="play-again">Play again</button>
+        `;
+        document.getElementById("play-again").addEventListener("click", () => {
+            initializeGame();
+        });
+    }
 }

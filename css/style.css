@@ -20,6 +20,15 @@ body {
     justify-content: right;
 }
 
+.nav-bar a {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin-right: 16px;
+    background-color: #00000067;
+    border-radius: 10px;
+    padding: 5px;
+}
+
 a {
     color: #FFFFFF;
     text-decoration: none;

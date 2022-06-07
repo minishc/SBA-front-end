@@ -38,6 +38,7 @@ function enableRelevantSelect() {
 //function for creating a weapon card to display the results from api call
 function createWeaponCard(weapon) {
     let weaponCard = document.createElement("div");
+    let weaponImage = document.createElement("img");
     weaponCard.classList.add("weapon-card");
     let weaponIcon = "";
 
@@ -54,10 +55,20 @@ function createWeaponCard(weapon) {
     else {
         urlAddition = weaponName.substring(0, weaponName.length - 2).replace(/ /g, '+');
     }
-
+    weaponImage.src = weaponIcon;
+    weaponImage.onerror = () => {
+        weaponImage.onerror = "";
+        weaponImage.src = "../images/notFound.png";
+        weaponCard.innerHTML = `
+            <a class="info-container" href="${fextra}${urlAddition}" target="_blank">
+                <img src="${weaponImage.src}" style="height: 128px; width: 128px;">
+                <h3>${weaponName}</h3>
+            </a>
+        `;
+    }
     weaponCard.innerHTML = `
             <a class="info-container" href="${fextra}${urlAddition}" target="_blank">
-                <img src="${weaponIcon}" style="height: 128px; width: 128px;">
+                <img src="${weaponImage.src}" style="height: 128px; width: 128px;">
                 <h3>${weaponName}</h3>
             </a>
         `;
@@ -67,6 +78,7 @@ function createWeaponCard(weapon) {
 //function for creating an armor card to display the results from api call
 function createArmorCard(armor) {
     let armorCard = document.createElement("div");
+    let armorImage = document.createElement("img");
     armorCard.classList.add("armor-card");
     let armorIcon = "";
 
@@ -81,9 +93,20 @@ function createArmorCard(armor) {
     const armorName = armor.name;
     let urlAddition = armorName.replace(/ /g, '+');
 
+    armorImage.src = armorIcon;
+    armorImage.onerror = () => {
+        armorImage.onerror = "";
+        armorImage.src = "../images/armorNotFound.png";
+        armorCard.innerHTML = `
+            <a class="info-container" href="${fextra}${urlAddition}" target="_blank">
+                <img src="${armorImage.src}" style="height: 128px; width: 128px;">
+                <h3>${armorName}</h3>
+            </a>
+        `;
+    };
     armorCard.innerHTML = `
         <a class="info-container" href="${fextra}${urlAddition}" target="_blank">
-            <img src="${armorIcon}" style="height: 128px; width: 128px;">
+            <img src="${armorImage.src}" style="height: 128px; width: 128px;">
             <h3>${armorName}</h3>
         </a>
         `;
