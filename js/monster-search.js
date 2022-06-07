@@ -32,7 +32,14 @@ function createMonsterCard(monster) {
 
     monsterImage.src = imgUrl;
     monsterImage.onerror = () => {
-        monsterImage.onerror = "";
+        monsterImage.onerror = () => {
+            monsterImage.onerror = "";
+            monsterImage.src = "https://vignette.wikia.nocookie.net/mogapedia/images/6/6f/MHW-Unknown_Monster_Icon.png/revision/latest?cb=20180129200143&path-prefix=fr";
+            monCard.innerHTML = `
+                <img src=${monsterImage.src} target="_blank" class="monster-picture">
+                <h3>${monName}</h3>
+            `;
+        };
         monsterImage.src = monsterImage.src.replace("mhw", "mhwi");
         console.log(monsterImage.src);
         if(monName.toLowerCase() == 'stygian zinogre') {
@@ -46,8 +53,10 @@ function createMonsterCard(monster) {
     };  
 
     monCard.innerHTML = `
-        <img src=${monsterImage.src} target="_blank" class="monster-picture">
-        <h3>${monName}</h3>
+        <a href="">
+            <img src=${monsterImage.src} target="_blank" class="monster-picture">
+            <h3>${monName}</h3>
+        </a>
     `;
 
     monSearchDomElements.results.appendChild(monCard);
