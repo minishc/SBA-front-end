@@ -25,7 +25,7 @@ function createMonsterCard(monster) {
     let imgUrl = fextraImagePrefix;
     const monName = monster.name;
 
-    monCard.classList.add("info-container");
+    monCard.classList.add("monster-container");
     
     imgUrl += monster.name.toLowerCase().replace(/ /g, '_');
     imgUrl += "_render_001.png";
@@ -36,8 +36,10 @@ function createMonsterCard(monster) {
             monsterImage.onerror = "";
             monsterImage.src = "https://vignette.wikia.nocookie.net/mogapedia/images/6/6f/MHW-Unknown_Monster_Icon.png/revision/latest?cb=20180129200143&path-prefix=fr";
             monCard.innerHTML = `
-                <img src=${monsterImage.src} target="_blank" class="monster-picture">
-                <h3>${monName}</h3>
+                <a href="${fextra}${monURL}" target="_blank" class="monster-info">
+                    <img src=${monsterImage.src} class="monster-picture">
+                    <h3>${monName}</h3>
+                </a>
             `;
         };
         monsterImage.src = monsterImage.src.replace("mhw", "mhwi");
@@ -46,15 +48,18 @@ function createMonsterCard(monster) {
             monsterImage.src = monsterImage.src.replace("001", "2");
         }
         monCard.innerHTML = `
-            <img src=${monsterImage.src} target="_blank" class="monster-picture">
-            <h3>${monName}</h3>
+            <a href="${fextra}${monURL}" target="_blank" class="monster-info">
+                <img src=${monsterImage.src} class="monster-picture">
+                <h3>${monName}</h3>
+            </a>
         `;
         return true;
     };  
 
+    let monURL = monName.replace(/ /g, '+');
     monCard.innerHTML = `
-        <a href="">
-            <img src=${monsterImage.src} target="_blank" class="monster-picture">
+        <a href="${fextra}${monURL}" target="_blank" class="monster-info">
+            <img src=${monsterImage.src} class="monster-picture">
             <h3>${monName}</h3>
         </a>
     `;
