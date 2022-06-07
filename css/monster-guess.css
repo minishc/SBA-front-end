@@ -1,0 +1,38 @@
+#game-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 400px;
+}
+
+#game-hints {
+    flex-grow: 1;
+}
+
+#guess-form {
+    height: 35px;
+    display: inherit;
+}
+
+#guess-form input {
+    height: 25px;
+    width: 140px;
+    border: none;
+    margin-right: 8px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+#guess-form button {
+    height: 25px;
+    width: 140px;
+    border: none;
+    margin-left: 8px;
+    border-radius: 5px;
+}
+
+#monster-hints {
+    text-align: center;
+    height: 250px;
+}

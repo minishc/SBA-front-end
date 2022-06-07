@@ -3,6 +3,7 @@
 <head>
     <title>SBA-MH World Search</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/main-page.js"></script>
     <style>
         body {
             color: #FFFFFF;
@@ -11,21 +12,50 @@
 </head>
 
 <body>
+    <!--Navigation bar to stay consistent among the pages-->
     <header class="nav-bar">
         
     </header>
-    <div class="main-container">
-        <table>
-            <tr>
-                <td>
-                    <a class="nav-link">
-                        <img src=https://vignette1.wikia.nocookie.net/monsterhunter/images/3/38/Rathalos-Roar.png/ 
-                            style="width: 200px; height: 200px;">
-                        <h2>Search for Monsters</h2>
-                    </a>
-                </td>
-            </tr>
-        </table>
+    <!--Making a container for the main content on the page-->
+    <div style="height: 80%; text-align: center; margin-top: 50px;">
+        <h1 style="align-self: flex-start;">Monster Hunter Search</h1>
+        <p>This is a website that uses the API for Monster Hunter World which is found <a href="https://docs.mhw-db.com" 
+                alt="mhw-db.com" style="color: #FFFFFF">here</a>. <br>
+            You can search through the equipment and the monsters that are in Monster Hunter World, <br> start by
+            clicking one of the buttons below.
+        </p>
+        <!--Flex container for the links to the other pages, uses a table to organize the elements-->
+        <div class="main-container">
+            <table>
+                <tr>
+                    <td>
+                        <a id="monster-search" class="nav-link" href="./views/monster-search.html">
+                            <img src=https://vignette1.wikia.nocookie.net/monsterhunter/images/3/38/Rathalos-Roar.png/ 
+                                style="width: 200px; height: 200px;">
+                            <h2>Search for Monsters</h2>
+                        </a>
+                    </td>
+                    <td></td>
+                    <td>
+                        <a id="equipment-search" class="nav-link" href="./views/equipment-search.html">
+                            <img src=https://static.wikia.nocookie.net/monsterhunter/images/c/c2/Great_Sword_Icon_White.png alt="Great Sword Icon"
+                                style="width: 100px; height: 100px; margin-top: 50px;">
+                            <h2>Search for Equipment</h2>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <a id="guess-monster" class="nav-link" href="./views/monster-guess.html" style="margin-left: 0;">
+                            <img src=images/unkown.png id="unknown-monster" alt="Unknown Monster" style="width: 150px;">
+                            <h2>Play guess the monster</h2>
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>

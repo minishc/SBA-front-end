@@ -1,0 +1,39 @@
+<!--
+    Game setup: 
+    "I am a (size) monster that can be found at (locations)"
+    --user makes a guess--
+    -> correct -> well done!
+    -> incorrect ->
+        "My description is"
+        -> correct -> well done!
+        -> incorrect ->
+            "My species is"
+            -> correct
+            -> incorrect -> try again / check spelling!
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Guess the Monster!</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/monster-guess.css">
+        <script type="text/javascript" src="../js/monster-guess.js"></script>
+    </head>
+
+    <body>
+        <div class="nav-bar">
+            <a href="./monster-search.html">Search Monsters</a>
+            <a href="./equipment-search.html">Search Equipment</a>
+            <a href="../index.html">Home</a>
+        </div>
+        <div id="game-container">
+            <div id="monster-hints"></div>
+            <div class="flex-break"></div>
+            <form id="guess-form" onsubmit="return false" autocomplete="off">
+                <label for="guess-value" style="align-self: center; margin-right: 6px">Guess: </label>
+                <input type="text" id="guess-value" placeholder="Enter monster name">
+                <button type="submit" id="make-guess">Submit Guess</button>
+            </form>
+        </div>
+    </body>
+</html>

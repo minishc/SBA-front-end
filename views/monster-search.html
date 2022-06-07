@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Monster Search</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/search.css">
+    <script type="text/javascript" defer src="../js/monster-search.js"></script>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="./monster-guess.html">Guess the Monster</a>
+        <a href="./equipment-search.html">Search Equipment</a>
+        <a href="../index.html">Home</a>
+    </div>
+    <div class="form-container">
+        <form onsubmit="return false" id="monster-search">
+            <select id="search-strategy">
+                <option value="monsterName">Monster name</option>
+                <option value="monsterSpecies">Monster species</option>
+            </select>
+            <input type="text" id="search-terms" placeholder="Enter search terms here">
+            <button id="submit-monster-search" type="submit">Search</button><br>
+        </form>
+    </div>
+    <div class="search-results" id="monster-search-results"></div>
+    </div>
+</body>
+</html>
