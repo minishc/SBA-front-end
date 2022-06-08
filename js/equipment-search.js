@@ -115,8 +115,8 @@ function createArmorCard(armor) {
 }
 //function to execute when the form for searching is submitted
 async function executeSearch() {
-    let searchValue = searchDomElements.searchTerms.value.toLowerCase();
-    let adjustedSearch = searchValue.replace(/ /g, "-");
+    const searchValue = searchDomElements.searchTerms.value.toLowerCase();
+    let adjustedSearch = searchValue;
     searchDomElements.results.innerHTML = "";
     if(searchDomElements.select.value == "weaponName" ||
             searchDomElements.select.value == "armorName") {

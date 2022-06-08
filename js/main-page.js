@@ -4,6 +4,7 @@ const domElements = {
     collectDOM: function() {
         this.monsterSearch = document.getElementById("monster-search");
         this.equipmentSearch = document.getElementById("equipment-search");
+        this.guessMonster = document.getElementById("guess-monster")
     }
 }
 
@@ -13,6 +14,8 @@ function init() {
     domElements.monsterSearch.addEventListener("mouseleave", originalColor);
     domElements.equipmentSearch.addEventListener("mouseenter", changeColor);
     domElements.equipmentSearch.addEventListener("mouseleave", originalColor);
+    domElements.guessMonster.addEventListener("mouseenter", changeColor);
+    domElements.guessMonster.addEventListener("mouseleave", originalColor);
 }
 
 function changeColor() {
